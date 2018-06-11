@@ -1,0 +1,70 @@
+{{ define "painelParceiro.html" }}
+{{ template "header.html" }} 
+{{ template "menu.html" }} 
+<li class="nav navbar-nav navbar-right">
+  <a class="nav-link" href="logout">Logout</a>
+</li>
+
+</nav>
+ 
+<h3 class="text-muted">Transportes App | Painel Administrativo</h3>
+
+</br>
+</br>
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="listPainelParceiro">Parceiros</a></li>
+  <li><a href="listaPainel">Contatos</a></li>
+</ul>
+
+</br>
+</br>
+
+</header>
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+
+      <th scope="col">id</th>
+      <th scope="col">Data Cadastro</th>  
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th scope="col">Telefone 1</th>
+      <th scope="col">Telefone 2 </th>
+      <th scope="col">Tipo Veiculo</th>
+      <th scope="col">Tipo Acesso</th>
+      
+      <th scope="col">View</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+  
+             
+      </tr>
+       </thead>
+       <tbody>
+
+    {{ range . }}
+      <tr>
+       <th scope="row">{{ .ID }}</th>
+       <td>{{ .DataCadastro }} </td>
+        <td> {{ .Nome }} </td>
+        <td>{{ .Email }} </td> 
+        <td>{{ .Telefone1 }} </td>
+        <td>{{ .Telefone2 }} </td>
+        <td>{{ .TipoVeiculo }} </td>
+        <td>{{ .TipoAcesso }} </td>
+        
+
+
+        <td><button type="button" class="btn btn-success"><a href="/shParceiro?id={{ .ID }}" style="color:#FFFFFF" class="sem_text">View</a></button></td>
+        <td><button type="button" class="btn btn-warning"><a href="/edParceiro?id={{ .ID }}" style="color:#FFFFFF" class="sem_text">Edit</a></button></td>
+        <td><button type="button" class="btn btn-danger"><a href="/delParceiro?id={{ .ID }}" style="color:#FFFFFF" class="sem_text">Delete</a></button></td>       
+      </tr>
+    {{ end }}
+       </tbody>
+    </table>
+  {{ template "footer.html" }}
+  </body>
+</html>
+{{ end }}

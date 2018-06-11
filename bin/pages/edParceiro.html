@@ -1,0 +1,137 @@
+{{define "edParceiro"}} 
+{{ template "header.html" }} 
+{{ template "menu.html" }}
+
+<li class="nav navbar-nav navbar-right">
+  <a class="nav-link" href="listPainelParceiro">Painel Parceiro</a>
+</li>
+
+<li class="nav navbar-nav navbar-right">
+    <a class="nav-link" href="logout">Logout</a>
+</li>
+
+</ul>
+</nav>
+
+<h3 class="text-muted">Transportes App - Painel Parceiro</h3>
+</br>
+</br>
+</header>
+<form method="POST" action="upParceiro">
+<div class="form-group">
+<input type="hidden" class="form-control" id="uid" name="uid" value={{ .ID }}>
+</div> 
+
+<div class="form-group">
+  <label for="Nome">Nome</label>
+  <input type="text" class="form-control" id="Nome" name="Nome" value={{ .Nome }}>
+  </div>
+  
+  <div class="form-group">
+  <label for="Email">Email</label>
+  <input type="text" class="form-control" id="Email" name="Email" value={{ .Email }}>
+  </div>
+ 
+  <div class="form-group">
+  <label for="Telefone1">Telefone 1</label>
+  <input type="text" class="form-control" id="Telefone1" name="Telefone1" value={{ .Telefone1 }}>
+  </div>
+  
+  <div class="form-group">
+  <label for="Telefone2">Telefone 2</label>
+  <input type="text" class="form-control" id="Telefone2" name="Telefone2" value={{ .Telefone2 }}>
+  </div>
+
+<div class="form-group">
+<label for="TipoAcesso">Tipo Acesso</label>
+<select class="form-control" id="TipoAcesso" name="TipoAcesso">
+<option>usuario</option>
+<option>adm</option>
+<option value={{ .TipoAcesso }} selected>{{ .TipoAcesso }}</option>
+</select>
+</div>
+
+  
+<div class="form-group">
+<label for="TipoVeiculo">Tipo Veículo</label>
+<select class="form-control" id=TipoVeiculo name=TipoVeiculo>
+<option>Veículo Urbano de Carga (VUC)</option>
+<option>Toco ou caminhão semi-pesado</option>
+<option>Truck ou caminhão pesado</option>
+<option>Cavalo Mecânico ou caminhão extra-pesado</option>
+<option>Cavalo Mecânico Trucado ou LS</option>
+<option>Carreta de 2 eixos</option>
+<option>Carreta de 3 eixos</option>
+<option>Carreta Cavalo Trucado</option>
+<option>Bitrem ou treminhão</option>
+<option>Van ou Perua</option>
+<option>Carro</option>
+<option>Nenhum</option>
+<option value={{ .TipoVeiculo }} selected>{{ .TipoVeiculo }}</option>
+</select>
+</div>
+
+<div class="form-group">
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</div>
+</form>
+</br>
+</br>
+{{ template "footer.html" }}
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+  $("#form_trabalheConosco").validate({
+    rules: {
+      Nome: {
+        required: true,
+        minlength: 3
+      },
+      Email: {
+        required: true,
+      },
+      Password: {
+        required: true,
+        minlength: 6
+      },
+      Telefone1: {
+        required: true
+      },
+      Telefone2: {
+        required: true
+      },
+      TipoVeiculo: {
+        required: true
+      }
+    },
+    messages: {
+      Nome: {
+        required: "Por favor, informe seu nome",
+        minlength: "O nome deve ter pelo menos 3 caracteres"
+      },
+      Email: {
+        required: "É necessário informar um email"
+      },
+      Password: {
+        required: "É necessário informar a senha"
+      },
+      Telefone1: {
+        required: "O telefone1 não pode ficar em branco"
+      },
+      Telefone2: {
+        required: "O telefone2 não pode ficar em branco"
+      },
+      TipoVeiculo: {
+        required: "Tipo do Veículo deve ser selecionado"
+      }
+    }
+  });
+
+</script>
+
+</body>
+
+</html>
+{{ end }}

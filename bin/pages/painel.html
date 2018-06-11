@@ -1,0 +1,59 @@
+{{ define "painel.html" }}
+{{ template "header.html" }} 
+{{ template "menu.html" }} 
+<li class="nav navbar-nav navbar-right">
+  <a class="nav-link" href="logout">Logout</a>
+</li>
+
+</nav>
+ 
+<h3 class="text-muted">Transportes App | Painel Administrativo</h3>
+
+</br>
+</br>
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="listaPainel">Contatos</a></li>
+  <li><a href="listPainelParceiro">Parceiros</a></li>
+</ul>
+</br>
+</br>
+
+</header>
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+
+      <th scope="col">id</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th scope="col">Telefone</th>
+      <th scope="col">Comentário</th>
+      <th scope="col">View</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+             
+      </tr>
+       </thead>
+       <tbody>
+
+    {{ range . }}
+      <tr>
+       <th scope="row">{{ .ID }}</th>
+        <td> {{ .Nome }} </td>
+        <td>{{ .Email }} </td> 
+        <td>{{ .Telefone }} </td>
+        <td>{{ .Descricao }} </td>
+        <td><button type="button" class="btn btn-success"><a href="/show?id={{ .ID }}" style="color:#FFFFFF" class="sem_text">View</a></button></td>
+        <td><button type="button" class="btn btn-warning"><a href="/edit?id={{ .ID }}" style="color:#FFFFFF" class="sem_text">Edit</a></button></td>
+        <td><button type="button" class="btn btn-danger"><a href="/delete?id={{ .ID }}" style="color:#FFFFFF" class="sem_text">Delete</a></button></td>       
+      </tr>
+    {{ end }}
+       </tbody>
+    </table>
+  {{ template "footer.html" }}
+  </body>
+</html>
+{{ end }}
+

@@ -1,0 +1,17 @@
+{{ define "Show" }}
+  {{ template "Header" }}
+    {{ template "Menu"  }}
+    <h2> Registro  | Código {{ .ID }} </h2>
+      
+ <div class="container">
+  <div class="row">    
+      <p><b>Nome: </b> {{ .Nome }}</p>
+      <p><b>Email:  </b>{{ .Email }}</p>
+      <p><b>Telefone:  </b>{{ .Telefone }}</p>
+      <p><b>Comentário:  </b>{{ .Descricao }}</p>
+    </div>   
+  </div>
+      
+      <br /> <a href="/edit?id={{ .ID }}">Edit</a></p>
+  {{ template "Footer" }}
+{{ end }}

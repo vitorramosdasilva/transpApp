@@ -1,0 +1,35 @@
+{{ define "Edit" }}
+  {{ template "Header" }}
+    {{ template "Menu" }} 
+   <h2>Edit os Dados</h2>  
+    <form method="POST" action="update">     
+        <div class="form-group">          
+          <input type="hidden" class="form-control" id="uid" name="uid" value={{ .ID }}>
+        </div>
+
+        <div class="form-group">          
+          <label for="Nome">Nome</label>
+          <input type="text" class="form-control" id="Nome" name="Nome" value={{ .Nome }}>
+        </div> 
+
+        <div class="form-group">          
+          <label for="Email">Email</label>
+           <input type="text" class="form-control" id="Email" name="Email" value={{ .Email }}>
+        </div> 
+
+        <div class="form-group">          
+          <label for="Telefone">Telefone</label>
+          <input type="text" class="form-control" id="Telefone" name="Telefone" value={{ .Telefone }}>
+        </div> 
+
+        <div class="form-group">
+          <label for="Descricao">Comentário:</label>
+          <input type="textarea" class="form-control" rows="5" cols="12" id="Descricao" name="Descricao" value={{ .Descricao }}></textarea>
+        </div>
+        
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </div> 
+       <form/>    
+  {{ template "Footer" }}
+{{ end }}

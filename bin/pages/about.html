@@ -1,0 +1,41 @@
+{{ template "header.html" }} 
+{{ template "menu.html" }} 
+
+{{if .tipoAcesso }}
+<ul class="nav navbar-nav navbar-right">
+<li><a class="nav-link" href="listaPainel">Painel</a></li>
+</ul>
+{{end}}
+
+{{if .Username}}
+<ul class="nav navbar-nav navbar-right">
+<li><a href="logout">Logout</a></li>
+</ul>
+{{end}}
+
+
+</ul>
+</nav>
+
+        <h3 class="text-muted">TransportesApp</h3>
+      </header>
+      <div class="jumbotron">
+        <!--<h1 class="display-3">Transportes App</h1>-->
+        <p class="lead">
+
+        <main role="main">        
+          <h1 class="display-3">Sobre nós</h1>
+          <p class="lead">Desde Março de 2018 estamos utilizando a tecnologia para conectar pessos através de serviços.</p>
+          <p class="lead">Nossos serviços efetuam conexões entre pessoas, clientes e transportador para que essas se beneficiam de serviços de transportes "mudanças" em comum e nós garantimos a qualidade desse já que isso fazem parte da nossa imagem e transparência .</p>
+          <p class="lead">Queremos aliar o novo e o velho trazendo a praticidade e velocidade da conexão da tecnologia aos nossos colaboradores e clientes.</p>
+          <p class="lead">Você que trabalha com transportes e quer disponibilizar um bom serviço faça um cadastro conosco.</p>
+          <p class="lead">Você cliente que precisa de um profissional para transporte de seus bens, nos contate, pois nosso propósito é fazer a ponte entre você e o transportador.</p>
+        </main>
+    </div>
+    <!--<p><a class="btn btn-lg btn-success" href="login" role="button">Login</a></p>-->
+  </br></br>
+  {{ template "footer.html" }}
+
+    </div> <!-- /container -->
+  </body>
+</html>

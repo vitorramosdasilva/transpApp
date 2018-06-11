@@ -1,0 +1,41 @@
+{{ define "Index" }}
+  {{ template "Header" }}
+    {{ template "Menu"  }}
+    <h2> Registered </h2>
+
+    
+    <table class="table">
+      <thead>
+      <tr>
+
+      <th scope="col">id</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th scope="col">Telefone</th>
+      <th scope="col">Comentário</th>
+      <th scope="col">View</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+             
+      </tr>
+       </thead>
+       <tbody>
+
+    {{ range . }}
+      <tr>
+       <th scope="row">{{ .ID }}</th>
+        <td> {{ .Nome }} </td>
+        <td>{{ .Email }} </td> 
+        <td>{{ .Telefone }} </td>
+        <td>{{ .Descricao }} </td>
+
+        <td><a href="/show?id={{ .ID }}">View</a></td>
+        <td><a href="/edit?id={{ .ID }}">Edit</a></td>
+        <td><a href="/delete?id={{ .ID }}">Delete</a></td>
+      </tr>
+    {{ end }}
+       </tbody>
+    </table>
+  {{ template "Footer" }}
+{{ end }}
+

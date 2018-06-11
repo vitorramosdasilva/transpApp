@@ -1,0 +1,139 @@
+{{ template "header.html" }} {{ template "menu.html" }} 
+{{if .tipoAcesso }}
+<ul class="nav navbar-nav navbar-right">
+<li><a class="nav-link" href="listaPainel">Painel</a></li>
+</ul>
+{{end}}
+
+{{if .Username}}
+<ul class="nav navbar-nav navbar-right">
+<li><a href="logout">Logout</a></li>
+</ul>
+{{end}}
+
+</ul>
+</nav>
+
+<h3 class="text-muted">Transportes App</h3>
+</header>
+
+
+<form method="POST" action="insertTrabalheConosco" id="form_trabalheConosco" name="form_trabalheConosco">
+
+  <div class="form-group">
+    <ul class="nav nav-tabs">
+      <li  class="active"><a href="trabalheConosco">Dados Pessoais</a></li>
+      <li><a href="trabalheEndereco">Endereço</a></li>
+    </ul>
+  </div>
+  <h4 class="text-muted"></h4>
+  <code>{{.Mensagem}}</code>
+  </h4>
+
+  <div class="form-group">
+    <label for="Nome">Nome</label>
+    <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome">
+  </div>
+
+  <div class="form-group">
+    <label for="Email">Email</label>
+    <input type="text" class="form-control" id="Email" name="Email" placeholder="Email@provedor.com.br" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
+  </div>
+  <div class="form-group">
+    <label for="Password">Senha</label>
+    <input type="password" class="form-control" id="Password" name="Password" placeholder="Números, letras ou símbolos">
+  </div>
+
+  <div class="form-group">
+    <label for="Telefone1">Telefone 1</label>
+    <input type="text" class="form-control" id="Telefone1" name="Telefone1" placeholder="(11)11111-1111" required pattern="(\({0,1}\d{0,2}\){0,1} {0,1})(\d{4,5}) {0,1}-{0,1}(\d{4})">
+  </div>
+
+  <div class="form-group">
+    <label for="Telefone2">Telefone 2</label>
+    <input type="text" class="form-control" id="Telefone2" name="Telefone2" placeholder="(11)11111-1111" required pattern="(\({0,1}\d{0,2}\){0,1} {0,1})(\d{4,5}) {0,1}-{0,1}(\d{4})">
+  </div>
+
+  <div class="form-group">
+    <label for="TipoVeiculo">Tipo Veículo</label>
+    <select class="form-control" id=TipoVeiculo name=TipoVeiculo>
+      <option>Veículo Urbano de Carga (VUC)</option>
+      <option>Toco ou caminhão semi-pesado</option>
+      <option>Truck ou caminhão pesado</option>
+      <option>Cavalo Mecânico ou caminhão extra-pesado</option>
+      <option>Cavalo Mecânico Trucado ou LS</option>
+      <option>Carreta de 2 eixos</option>
+      <option>Carreta de 3 eixos</option>
+      <option>Carreta Cavalo Trucado</option>
+      <option>Bitrem ou treminhão</option>
+      <option>Van ou Perua</option>
+      <option>Carro</option>
+      <option>Nenhum</option>
+      <option value="audi" selected>Escolha Tipo Veículo</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </div>
+</form>
+
+</br>
+</br>
+{{ template "footer.html" }}
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+  $("#form_trabalheConosco").validate({
+    rules: {
+      Nome: {
+        required: true,
+        minlength: 3
+      },
+      Email: {
+        required: true,
+      },
+      Password: {
+        required: true,
+        minlength: 6
+      },
+      Telefone1: {
+        required: true
+      },
+      Telefone2: {
+        required: true
+      },
+      TipoVeiculo: {
+        required: true
+      }
+    },
+    messages: {
+      Nome: {
+        required: "Por favor, informe seu nome",
+        minlength: "O nome deve ter pelo menos 3 caracteres"
+      },
+      Email: {
+        required: "É necessário informar um email"
+      },
+      Password: {
+        required: "É necessário informar a senha"
+      },
+      Telefone1: {
+        required: "O telefone1 não pode ficar em branco"
+      },
+      Telefone2: {
+        required: "O telefone2 não pode ficar em branco"
+      },
+      TipoVeiculo: {
+        required: "Tipo do Veículo deve ser selecionado"
+      }
+    }
+  });
+
+</script>
+
+</body>
+
+</html>

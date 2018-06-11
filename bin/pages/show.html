@@ -1,0 +1,39 @@
+{{ define "show" }}
+{{ template "header.html" }}
+{{ template "menu.html"  }}
+
+
+<ul class="nav navbar-nav navbar-right">
+<li><a class="nav-link" href="listaPainel">Painel</a></li>
+</ul>
+
+<ul class="nav navbar-nav navbar-right">
+<li><a href="logout">Logout</a></li>
+</ul>
+
+
+</ul>
+</nav>
+ 
+<h3 class="text-muted">Transportes App - Registro</h3>
+</br>
+</br>
+
+</header>
+
+    <h2> Código {{ .ID }} </h2>
+      
+ <div class="container">
+  <div class="row">    
+      <p><b>Nome: </b> {{ .Nome }}</p>
+      <p><b>Email:  </b>{{ .Email }}</p>
+      <p><b>Telefone:  </b>{{ .Telefone }}</p>
+      <p><b>Comentário:  </b>{{ .Descricao }}</p>
+    </div>   
+  </div>
+      
+      <br /><p><a href="/edit?id={{ .ID }}">Edit</a></p>
+  {{ template "footer.html" }}
+</body>
+</html>
+{{ end }}

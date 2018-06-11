@@ -1,0 +1,97 @@
+{{define "edit"}} 
+{{ template "header.html" }}
+{{ template "menu.html" }}
+
+<ul class="nav navbar-nav navbar-right">
+<li><a class="nav-link" href="listaPainel">Painel</a></li>
+</ul>
+
+<ul class="nav navbar-nav navbar-right">
+<li><a href="logout">Logout</a></li>
+</ul>
+
+</ul>
+</nav>
+
+<h3 class="text-muted">Transportes App - Painel</h3>
+</br>
+</br>
+</header>
+<form method="POST" action="update">
+  <div class="form-group">
+    <input type="hidden" class="form-control" id="uid" name="uid" value={{ .ID }}>
+  </div>
+
+  <div class="form-group">
+    <label for="Nome">Nome</label>
+    <input type="text" class="form-control" id="Nome" name="Nome" value={{ .Nome }}>
+  </div>
+
+  <div class="form-group">
+    <label for="Email">Email</label>
+    <input type="text" class="form-control" id="Email" name="Email" value={{ .Email }}>
+  </div>
+
+  <div class="form-group">
+    <label for="Telefone">Telefone</label>
+    <input type="text" class="form-control" id="Telefone" name="Telefone" value={{ .Telefone }}>
+  </div>
+
+  <div class="form-group">
+    <label for="Descricao">Comentário:</label>
+    <textarea class="form-control" rows="5" cols="12" id="Descricao" name="Descricao">{{ .Descricao }}</textarea>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </div>
+</form>
+{{ template "footer.html" }}
+
+</div>
+<!-- /container -->
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+  $("#form_contato").validate({
+    rules: {
+      Nome: {
+        required: true,
+        minlength: 3
+      },
+      Email: {
+        required: true,
+      },
+      Telefone: {
+        required: true
+      },
+      Descricao: {
+        required: true,
+        minlength: 15
+      }
+    },
+    messages: {
+      Nome: {
+        required: "Por favor, informe seu nome",
+        minlength: "O nome deve ter pelo menos 3 caracteres"
+      },
+      Email: {
+        required: "É necessário informar um email"
+      },
+      Telefone: {
+        required: "O telefone não pode ficar em branco"
+      },
+      Descricao: {
+        required: "Os comentário não pode ficar em branco",
+        minlength: "O comentário deve ter pelo menos 15 caracteres"
+      }
+    }
+  });
+
+</script>
+</body>
+
+</html>
+
+{{ end }}

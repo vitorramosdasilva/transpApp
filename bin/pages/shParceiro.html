@@ -1,0 +1,41 @@
+{{ define "shParceiro" }}
+{{ template "header.html" }}
+{{ template "menu.html"  }}
+
+
+<li class="nav navbar-nav navbar-right">
+      <a class="nav-link" href="logout">Logout</a>
+</li>
+
+<li class="nav navbar-nav navbar-right">
+        <a class="nav-link" href="listPainelParceiro">Painel Parceiro</a>
+</li>
+
+</ul>
+</nav>
+ 
+<h3 class="text-muted">Transportes App - Registro Parceiro</h3>
+</br>
+</br>
+
+</header>
+
+<h2> Código {{ .ID }} </h2>
+
+<div class="container">  
+<div class="row">   
+<p><b>Nome: </b> {{ .Nome }}</p>
+<p><b>Email:  </b>{{ .Email }}</p>
+<p><b>Telefone1:  </b>{{ .Telefone1 }} </p>
+<p><b>Telefone2:  </b>{{ .Telefone2 }} </p>
+<p><b>Tipo Veiculo:  </b>{{ .TipoVeiculo }} </p>
+<p><b>Tipo Acesso:  </b>{{ .TipoAcesso }} </p>
+<p><b>Data Cadastro:  </b>{{ .DataCadastro }} </p>
+</div>   
+</div>
+      
+<br /><p><a href="/edParceiro?id={{ .ID }}">Edit</a></p>
+  {{ template "footer.html" }}
+</body>
+</html>
+{{ end }}

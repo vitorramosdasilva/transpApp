@@ -1,0 +1,205 @@
+{{ template "header.html" }} {{ template "menu.html" }} 
+
+{{if .tipoAcesso }}
+<ul class="nav navbar-nav navbar-right">
+<li><a class="nav-link" href="listaPainel">Painel</a></li>
+</ul>
+{{end}}
+
+{{if .Username}}
+<ul class="nav navbar-nav navbar-right">
+<li><a href="logout">Logout</a></li>
+</ul>
+{{end}}
+</ul>
+</nav>
+<h3 class="text-muted">Transportes App</h3>
+</header>
+
+<form method="POST" action="insertTrabalheEndereco" id="form_trabalheEndereco" name="form_trabalheEndereco">
+
+  <div class="form-group">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="trabalheEndereco">Endereço</a></li>
+      <li><a href="trabalheConosco">Dados Pessoais</a></li>
+    </ul>
+  </div>
+
+  <input id="Id_parc" name="Id_parc" type="hidden" value="{{.ID}}" />
+  <h4 class="text-muted"></h4>
+  <code>{{.Mensagem}}</code>
+  </h4>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label for="Cep">CEP</label>
+    <input id="Cep" name="Cep" type="text" placeholder="01111-1111" class="form-control" required pattern="\d{5}-\d{3}" />
+  </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label for="Rua">Rua</label>
+    <input id="Rua" name="Rua" type="text" placeholder="Rua Exemplo" class="form-control">
+  </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label for="Numero">Nº</label>
+    <input id="Numero" name="Numero" type="text" placeholder="111" class="form-control">
+  </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label for="Bairro">Bairro</label>
+    <input id="Bairro" name="Bairro" type="text" placeholder="Exemplo" class="form-control">
+  </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label for="Complemento">Complemento</label>
+    <input id="Complemento" name="Complemento" type="text" placeholder="Casa 1 ou Ponto refencia" class="form-control">
+  </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label for="Cidade">Cidade</label>
+    <input id="Cidade" name="Cidade" type="text" placeholder="" class="form-control input-md">
+  </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label for="Uf">UF</label>
+    <input id="Uf" name="Uf" type="text" placeholder="" class="form-control">
+  </div>
+
+  <!-- Button -->
+  <div class="form-group">
+    <label for="submit"></label>
+    <button id="submit" name="submit" class="btn btn-primary">Enviar</button>
+  </div>
+
+  <!--</fieldset>-->
+</form>
+</br>
+</br>
+{{template "footer.html"}}
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    function limpa_formulário_cep() {
+      // Limpa valores do formulário de cep.
+      $("#Rua").val("");
+      $("#Bairro").val("");
+      $("#Cidade").val("");
+      $("#Uf").val("");
+
+    }
+
+    //Quando o campo cep perde o foco.
+    $("#Cep").blur(function () {
+
+      var cep = $(this).val().replace(/\D/g, '');
+
+      if (cep != "") {
+
+        var validacep = /^[0-9]{8}$/;
+        if (validacep.test(cep)) {
+          //Preenche os campos com "..." enquanto consulta webservice.
+          $("#Rua").val("Atualizando...");
+          $("#Bairro").val("Atualizando...");
+          $("#Cidade").val("Atualizando...");
+          $("#Uf").val("Atualizando...");
+
+          //Consulta o webservice viacep.com.br/
+          $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+            if (!("erro" in dados)) {
+              //Atualiza os campos com os valores da consulta.
+              $("#Rua").val(dados.logradouro);
+              $("#Bairro").val(dados.bairro);
+              $("#Cidade").val(dados.localidade);
+              $("#Uf").val(dados.uf);
+
+            } //end if.
+            else {
+              //CEP pesquisado não foi encontrado.
+              limpa_formulário_cep();
+              alert("CEP não encontrado.");
+            }
+          });
+        } //end if.
+        else {
+          //cep é inválido.
+          limpa_formulário_cep();
+          alert("Formato de CEP inválido.");
+        }
+      } //end if.
+      else {
+        //cep sem valor, limpa formulário.
+        limpa_formulário_cep();
+      }
+    });
+  });
+</script>
+
+
+<script>
+  $("#form_trabalheEndereco").validate({
+    rules: {
+      Cep: {
+        required: true,
+      },
+      Rua: {
+        required: true,
+      },
+      Numero: {
+        required: true,
+        minlength: 1
+      },
+      Bairro: {
+        required: true
+      },
+      Cidade: {
+        required: true
+      },
+      Uf: {
+        required: true,
+        minlength: 2
+      },
+
+    },
+    messages: {
+      Cep: {
+        required: "Por favor, informe seu cep",
+        minlength: "O cep deve ter pelo menos 8 caracteres"
+
+      },
+      Rua: {
+        required: "É necessário informar uma Rua"
+      },
+      Numero: {
+        required: "É necessário informar o número"
+      },
+      Bairro: {
+        required: "O Bairro não pode ficar em branco"
+      },
+      Cidade: {
+        required: "A cidade não pode ficar em branco"
+      },
+      Uf: {
+        required: "O estado (uf) não pode ficar em branco"
+      }
+    }
+  });
+
+
+
+
+
+</script>
+</body>
+
+</html>

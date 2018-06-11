@@ -1,0 +1,49 @@
+{{ template "header.html" }}
+{{ template "menu.html" }}
+
+
+
+{{if .tipoAcesso }}
+<ul class="nav navbar-nav navbar-right">
+<li><a class="nav-link" href="listaPainel">Painel</a></li>
+</ul>
+{{end}}
+
+{{if .Username}}
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="logout">Logout</a></li>
+</ul>
+{{end}}
+
+</ul>
+</nav>
+ 
+        <h3 class="text-muted">Transportes App</h3>
+      </header>
+
+      <main role="main">
+
+        <div class="jumbotron">
+          <h1 class="display-3">Transportes App</h1>
+          <p class="lead">Somos uma empresa focada em servicos de transportes para o bem estar e qualidade
+          na condução e entrega dos seus bens, bem melhor dizendo "mudanças" e nesse momento trabalhamos dentro da região de São Paulo - Capital.</p>
+          <!--<p><a class="btn btn-lg btn-secondary" href="login" role="button">Login</a></p>-->          
+          <p><a class="btn btn-lg btn-success" href="login" role="button">Login</a></p>
+        </div>
+
+        <img src="../Public/bs4/img/caixas_1.png" alt="Mudanca_1">
+
+        <div class="row marketing">
+          <div class="col-lg-6">            
+          </div>
+          <div class="col-lg-6">          
+          </div>
+        </div>
+
+      </main>
+
+      {{ template "footer.html" }}
+        </br></br>
+    </div> 
+  </body>
+</html>

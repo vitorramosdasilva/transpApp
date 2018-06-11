@@ -1,0 +1,116 @@
+{{ template "header.html" }} 
+{{ template "menu.html" }} 
+{{if .tipoAcesso }}
+<ul class="nav navbar-nav navbar-right">
+<li><a class="nav-link" href="listaPainel">Painel</a></li>
+</ul>
+{{end}}
+
+{{if .Username}}
+<ul class="nav navbar-nav navbar-right">
+<li><a href="logout">Logout</a></li>
+</ul>
+{{end}}
+
+
+</ul>
+</nav>
+
+<h3 class="text-muted">Transportes App</h3>
+{{if .Mensagem}}
+  <h4 class="text-muted"></h4><code>{{.Mensagem}}</code></h4>
+{{end}}
+
+</header>
+
+<div class="jumbotron">
+  <main role="main">
+
+    <h1 class="display-3">Fale Conosco</h1>
+    <p class="lead">Fale conosco queremos saber sua solicitação de nossos serviços, dúvidas ou sugestões.</p>
+    <!--<p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>-->
+
+  </main>
+</div>
+
+
+<form method="POST" action="insertContato" id="form_contato" class="form">
+
+  <div class="form-group">
+    <label for="Nome">Nome</label>
+    <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome">
+  </div>
+
+  <div class="form-group">
+    <label for="Email">Email</label>
+    <input type="text" class="form-control" id="Email" name="Email" placeholder="Email@provedor.com.br" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
+  </div>
+
+  <div class="form-group">
+    <label for="Telefone">Telefone</label>
+    <input type="text" class="form-control" id="Telefone" name="Telefone" placeholder="(11)11111-1111" required pattern="(\({0,1}\d{0,2}\){0,1} {0,1})(\d{4,5}) {0,1}-{0,1}(\d{4})"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="Descricao">Comentários:</label>
+    <textarea class="form-control" rows="5" id="Descricao" name="Descricao"></textarea>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary"><a href="https://bit.ly/2wCJaAT" style="color:#FFFFFF" style="text-decoration: none">Enviar</a></button>
+    <!--https://api.whatsapp.com/send?phone=seunumerodetelefone&text=sua%20mensagem-->
+    <!--https://bit.ly/2wCJaAT-->
+  </div>
+</form>
+
+
+<footer class="footer">
+  <p>&copy;Dog Runner Company 2018</p>
+</footer>
+
+</div>
+<!-- /container -->
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+  $("#form_contato").validate({
+    rules: {
+      Nome: {
+        required: true,
+        minlength: 3
+      },
+      Email: {
+        required: true,
+      },
+      Telefone: {
+        required: true
+      },
+      Descricao: {
+        required: true,
+        minlength: 15
+      }
+    },
+    messages: {
+      Nome: {
+        required: "Por favor, informe seu nome",
+        minlength: "O nome deve ter pelo menos 3 caracteres"
+      },
+      Email: {
+        required: "É necessário informar um email"
+      },
+      Telefone: {
+        required: "O telefone não pode ficar em branco"
+      },
+      Descricao: {
+        required: "Os comentário não pode ficar em branco",
+        minlength: "O comentário deve ter pelo menos 15 caracteres"
+      }
+    }
+  });
+
+</script>
+</body>
+
+</html>

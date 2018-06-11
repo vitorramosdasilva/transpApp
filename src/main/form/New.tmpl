@@ -1,0 +1,35 @@
+{{ define "New" }}
+  {{ template "Header" }}
+    {{ template "Menu" }}     
+      
+
+      <form method="POST" action="insert">
+
+        <div class="form-group">          
+          <label for="Nome">Nome</label>
+          <input type="text" class="form-control" id="Nome" name="Nome" placeholder="Nome">
+        </div> 
+
+        <div class="form-group">          
+          <label for="Email">Email</label>
+           <input type="text" class="form-control" id="Email" name="Email" placeholder="Email@provedor.com.br">
+        </div> 
+
+        <div class="form-group">          
+          <label for="Telefone">Telefone</label>
+          <input type="text" class="form-control" id="Telefone" name="Telefone" placeholder="Telefone">
+        </div> 
+
+        <div class="form-group">
+          <label for="Descricao">Comentário:</label>
+          <textarea class="form-control" rows="5" id="Descricao" name="Descricao"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+      </form>
+
+  {{ template "Footer" }}
+{{ end }}
+

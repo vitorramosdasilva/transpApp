@@ -1,0 +1,111 @@
+{{ template "header.html" }}
+{{ template "menu.html" }}
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="https://cdn.rawgit.com/novus/nvd3/v1.7.1/build/nv.d3.min.js"></script>
+
+<label for="chartType">Chart Type:</label>
+<select name="chartType" id="chartType">
+    <option value="bar">Bar</option>
+    <option value="pie">Pie</option>
+</select>
+
+<div id="bar-chart">
+    <svg />
+</div>
+<div id="pie-chart">
+    <svg />
+</div>
+<script>
+
+//handle on click event
+
+d3.select('#chartType')
+  .on('change', function() {
+    var newData = d3.select(this).property('value');
+      if (newData === 'pie') {
+          d3.select('#bar-chart').style('display', 'none');
+          d3.select('#pie-chart').style('display', 'block');
+      } else if (newData === 'bar') {
+          d3.select('#bar-chart').style('display', 'block');
+          d3.select('#pie-chart').style('display', 'none');
+      }
+});
+
+function exampleData() {
+    return  [
+        { 
+            "label": "One",
+            "value" : 29.765957771107
+        } , 
+        { 
+            "label": "Two",
+            "value" : 0
+        } , 
+        { 
+            "label": "Three",
+            "value" : 32.807804682612
+        } , 
+        { 
+            "label": "Four",
+            "value" : 196.45946739256
+        } , 
+        { 
+            "label": "Five",
+            "value" : 0.19434030906893
+        } , 
+        { 
+            "label": "Six",
+            "value" : 98.079782601442
+        } , 
+        { 
+            "label": "Seven",
+            "value" : 13.925743130903
+        } , 
+        { 
+            "label": "Eight",
+            "value" : 5.1387322875705
+        }
+    ];
+}
+
+nv.addGraph(function() {
+    console.log('pieChart!');
+  var chart = nv.models.pieChart()
+      .x(function(d) { return d.label })
+      .y(function(d) { return d.value })
+      .showLabels(true);
+
+    d3.select("#pie-chart svg")
+        .datum(exampleData())
+        .transition().duration(350)
+        .call(chart);
+
+  return chart;
+});
+
+nv.addGraph(function() {
+  var chart2 = nv.models.discreteBarChart()
+      .x(function(d) { return d.label })    //Specify the data accessors.
+      .y(function(d) { return d.value })
+      .staggerLabels(true)    //Too many bars and not enough room? Try staggering labels.
+      .tooltips(false)        //Don't show tooltips
+      .showValues(true);
+
+  d3.select('#bar-chart svg')
+  .datum([{
+      key: "Cumulative Return",
+      values: exampleData()
+      }])
+      .call(chart2);
+
+  nv.utils.windowResize(chart2.update);
+
+  return chart2;
+});
+
+
+</script>
+</body>
+</html>
+
